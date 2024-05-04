@@ -1,0 +1,19 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/muhamadarba/Data Arba/Android Studio Project/Frelancer/OMR Apps/Optical-Mark-Recognition-Android-main/openCVLibrary340/src/main/AndroidManifest.xml:2:1-5:12
+INJECTED from /Users/muhamadarba/Data Arba/Android Studio Project/Frelancer/OMR Apps/Optical-Mark-Recognition-Android-main/openCVLibrary340/src/main/AndroidManifest.xml:2:1-5:12
+INJECTED from /Users/muhamadarba/Data Arba/Android Studio Project/Frelancer/OMR Apps/Optical-Mark-Recognition-Android-main/openCVLibrary340/src/main/AndroidManifest.xml:2:1-5:12
+	package
+		ADDED from /Users/muhamadarba/Data Arba/Android Studio Project/Frelancer/OMR Apps/Optical-Mark-Recognition-Android-main/openCVLibrary340/src/main/AndroidManifest.xml:3:7-27
+		INJECTED from /Users/muhamadarba/Data Arba/Android Studio Project/Frelancer/OMR Apps/Optical-Mark-Recognition-Android-main/openCVLibrary340/src/main/AndroidManifest.xml
+		INJECTED from /Users/muhamadarba/Data Arba/Android Studio Project/Frelancer/OMR Apps/Optical-Mark-Recognition-Android-main/openCVLibrary340/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Users/muhamadarba/Data Arba/Android Studio Project/Frelancer/OMR Apps/Optical-Mark-Recognition-Android-main/openCVLibrary340/src/main/AndroidManifest.xml:2:11-69
+uses-sdk
+INJECTED from /Users/muhamadarba/Data Arba/Android Studio Project/Frelancer/OMR Apps/Optical-Mark-Recognition-Android-main/openCVLibrary340/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/muhamadarba/Data Arba/Android Studio Project/Frelancer/OMR Apps/Optical-Mark-Recognition-Android-main/openCVLibrary340/src/main/AndroidManifest.xml
+INJECTED from /Users/muhamadarba/Data Arba/Android Studio Project/Frelancer/OMR Apps/Optical-Mark-Recognition-Android-main/openCVLibrary340/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /Users/muhamadarba/Data Arba/Android Studio Project/Frelancer/OMR Apps/Optical-Mark-Recognition-Android-main/openCVLibrary340/src/main/AndroidManifest.xml
+		ADDED from /Users/muhamadarba/Data Arba/Android Studio Project/Frelancer/OMR Apps/Optical-Mark-Recognition-Android-main/openCVLibrary340/src/main/AndroidManifest.xml
+		INJECTED from /Users/muhamadarba/Data Arba/Android Studio Project/Frelancer/OMR Apps/Optical-Mark-Recognition-Android-main/openCVLibrary340/src/main/AndroidManifest.xml
