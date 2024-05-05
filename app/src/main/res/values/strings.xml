@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">LJK Scanning</string>
     <string name="project_name">Scan LJK OMR</string>
+    <string name="title_activity_bottom_view_navigation">BottomViewNavigationActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 </resources>

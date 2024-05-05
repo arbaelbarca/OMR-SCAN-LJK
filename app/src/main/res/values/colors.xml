@@ -3,4 +3,22 @@
     <color name="colorPrimary">#0335fc</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03fcbe</color>
+
+    <color name="white">#FFFFFFFF</color>
+    <color name="cyan_primary">#08B3AB</color>
+    <color name="cyan_maps_radius">#B0FFFB</color>
+    <color name="cyan_primary_dark">#0E7C77</color>
+    <color name="green_primary">#186F65</color>
+    <color name="orange_primary">#FF7E47</color>
+    <color name="orange_primary_dark">#F44D06</color>
+    <color name="black_text">#333845</color>
+    <color name="gray_light">#F5F5F5</color>
+    <color name="gray_text_label">#A0A4A8</color>
+    <color name="gray_text">#333333</color>
+    <color name="gray_line">#ECEFF6</color>
+    <color name="green_bg">#E8FEEE</color>
+    <color name="green">#0C9A33</color>
+    <color name="red">#E91E63</color>
+    <color name="green_text">#34C85A</color>
+    <color name="transparant">#80000000</color>
 </resources>
