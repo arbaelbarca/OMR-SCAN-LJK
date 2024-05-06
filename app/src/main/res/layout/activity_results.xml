@@ -6,7 +6,6 @@
     android:layout_height="match_parent">
 
     <RelativeLayout
-
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:context=".Results">
@@ -27,7 +26,8 @@
             android:id="@+id/answers"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="20dp"
+            android:layout_below="@id/head"
+            android:layout_marginTop="@dimen/_5sdp"
             android:padding="10dp"
             android:textColor="#000000"
             android:textSize="17sp" />
@@ -37,7 +37,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/answers"
-            android:layout_centerInParent="true"
             android:layout_marginTop="@dimen/_10sdp"
             android:orientation="vertical"
             android:visibility="gone">
@@ -124,20 +123,138 @@
                 android:textColor="@color/colorPrimary"
                 android:textSize="20sp" />
 
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/llForm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_15sdp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="NIK"
+                        android:textColor="@color/black_text"
+                        android:textSize="@dimen/_11sdp" />
+
+
+                    <EditText
+                        android:id="@+id/tvInputNik"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:background="@drawable/bg_rounded_edit_text"
+                        android:hint="Masukan NIK"
+                        android:inputType="number"
+                        android:padding="@dimen/_10sdp"
+                        android:textColor="#334150"
+                        android:textSize="@dimen/_10sdp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Nama"
+                        android:textColor="@color/black_text"
+                        android:textSize="@dimen/_11sdp" />
+
+
+                    <EditText
+                        android:id="@+id/tvInputNama"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:background="@drawable/bg_rounded_edit_text"
+                        android:hint="Masukan Nama"
+                        android:inputType="text"
+                        android:padding="@dimen/_10sdp"
+                        android:textColor="#334150"
+                        android:textSize="@dimen/_10sdp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Mata Kuliah"
+                        android:textColor="@color/black_text"
+                        android:textSize="@dimen/_11sdp" />
+
+
+                    <EditText
+                        android:id="@+id/tvInputMataKuliah"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:background="@drawable/bg_rounded_edit_text"
+                        android:hint="Masukan NIK"
+                        android:inputType="text"
+                        android:padding="@dimen/_10sdp"
+                        android:textColor="#334150"
+                        android:textSize="@dimen/_10sdp" />
+
+                </LinearLayout>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
         </LinearLayout>
 
+
+        <ProgressBar
+            android:id="@+id/pbSubmit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/llScore"
+            android:visibility="gone" />
+
         <Button
-            android:id="@+id/check"
-            android:layout_width="wrap_content"
+            android:id="@+id/btnCheck"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/llScore"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
+            android:layout_margin="@dimen/_15sdp"
             android:layout_marginTop="20dp"
             android:background="@color/colorPrimary"
             android:padding="10dp"
-            android:text="Check Answers"
+            android:text="Check Jawaban"
+            android:textAllCaps="false"
             android:textColor="#ffffff" />
+
+        <Button
+            android:id="@+id/btnKirimJawaban"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/llScore"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="@dimen/_15sdp"
+            android:layout_marginTop="20dp"
+            android:background="@color/colorPrimary"
+            android:padding="10dp"
+            android:text="Kirim Jawaban"
+            android:textAllCaps="false"
+            android:textColor="#ffffff"
+            android:visibility="gone" />
 
     </RelativeLayout>
 </ScrollView>

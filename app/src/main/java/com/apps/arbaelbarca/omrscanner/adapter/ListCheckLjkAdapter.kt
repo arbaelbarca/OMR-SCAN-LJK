@@ -30,11 +30,12 @@ class ListCheckLjkAdapter : RecyclerView.Adapter<ViewBindingVH>() {
 
         (p0.binding as LayoutItemListLjkBinding).apply {
             dataItem?.apply {
+                tvItemMatkulLjk.text = "Mata Kuliah : $matkul"
                 tvNikItemLjk.text = "Nik : $nIK"
                 tvNameItemLjk.text = "Nama : $nama"
 
                 tvDateItemLjk.text = dateCreated
-                tvScoreItemLjk.text = "Score: $score"
+                tvScoreItemLjk.text = "Score: $score%"
 
                 tvItemTotalAnswerTrue.text = answerTrue
                 tvItemTotalAnswerFalse.text = answerFalse

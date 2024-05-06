@@ -2,6 +2,7 @@ package com.apps.arbaelbarca.omrscanner.data.source
 
 import com.apps.arbaelbarca.omrscanner.data.model.request.RequestPostLjk
 import com.apps.arbaelbarca.omrscanner.data.model.response.ResponseGetLjk
+import com.google.gson.JsonObject
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.http.Body
@@ -14,9 +15,9 @@ interface ApiService {
     ): Call<ResponseGetLjk>
 
     @POST("api/insert")
-     fun callPostLjk(
+    fun callPostLjk(
         @Body requestPostLjk: RequestPostLjk
-    ): JSONObject
+    ): Call<JsonObject>
 
 
 }

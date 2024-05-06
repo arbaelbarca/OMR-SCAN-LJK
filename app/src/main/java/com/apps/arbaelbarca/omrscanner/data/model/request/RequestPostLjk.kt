@@ -18,7 +18,7 @@ data class RequestPostLjk(
     @SerializedName("DateUpdated")
     val dateUpdated: String?,
     @SerializedName("Jawaban")
-    val jawaban: List<Jawaban?>?,
+    val jawaban: List<String?>?,
     @SerializedName("Matkul")
     val matkul: String?,
     @SerializedName("NIK")

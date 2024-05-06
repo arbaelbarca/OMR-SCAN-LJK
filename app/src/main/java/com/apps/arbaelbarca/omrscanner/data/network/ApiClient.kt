@@ -18,7 +18,7 @@ object RetrofitClient {
     private const val BASE_URL = "https://checkljk.com/"
 
     val okHttpClient = OkHttpClient.Builder()
-        .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC))
+        .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
         .readTimeout(1200, TimeUnit.SECONDS)
         .connectTimeout(1200, TimeUnit.SECONDS)
         .build()
