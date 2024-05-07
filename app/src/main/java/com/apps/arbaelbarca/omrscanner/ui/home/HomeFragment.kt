@@ -1,20 +1,28 @@
 package com.apps.arbaelbarca.omrscanner.ui.home
 
+import android.Manifest
 import android.app.Dialog
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.PermissionChecker.checkSelfPermission
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.apps.arbaelbarca.omrscanner.AnswersActivity
 import com.apps.arbaelbarca.omrscanner.MainActivity
 import com.apps.arbaelbarca.omrscanner.R
 import com.apps.arbaelbarca.omrscanner.adapter.ListCheckLjkAdapter
 import com.apps.arbaelbarca.omrscanner.data.model.response.ResponseGetLjk
 import com.apps.arbaelbarca.omrscanner.data.network.ApiClient
 import com.apps.arbaelbarca.omrscanner.databinding.FragmentHomeBinding
+import com.karumi.dexter.Dexter
+import com.karumi.dexter.MultiplePermissionsReport
+import com.karumi.dexter.PermissionToken
+import com.karumi.dexter.listener.PermissionRequest
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -46,16 +54,16 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
-//    override fun onResume() {
-//        super.onResume()
-//        (activity as AppCompatActivity?)!!.supportActionBar!!.hide()
-//    }
+    override fun onResume() {
+        super.onResume()
+        initial()
+    }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initial()
+//        initial()
     }
 
 
@@ -123,6 +131,49 @@ class HomeFragment : Fragment() {
             }
             dialog.show()
         }
+
+        var isExtendVisible = false
+
+        binding.apply {
+            btnAddExtendFloat.shrink()
+            btnAddExtendFloat.setOnClickListener {
+                if (!isExtendVisible) {
+                    tvAddTheKeyAnswe.visibility = View.VISIBLE
+                    tvAddScanLjk.visibility = View.VISIBLE
+
+                    btnAddExtendFloat.extend()
+                    isExtendVisible = true
+
+                    btnAddExtendFloat.text = "Hide"
+                } else {
+                    tvAddTheKeyAnswe.visibility = View.GONE
+                    tvAddScanLjk.visibility = View.GONE
+
+                    btnAddExtendFloat.shrink()
+                    isExtendVisible = false
+                    btnAddExtendFloat.text = "Show"
+                }
+            }
+
+            tvAddTheKeyAnswe.setOnClickListener {
+                Dexter.withContext(requireContext())
+                    .withPermissions(
+                        Manifest.permission.CAMERA,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        Manifest.permission.READ_EXTERNAL_STORAGE
+                    ).withListener(object : MultiplePermissionsListener {
+                        override fun onPermissionsChecked(report: MultiplePermissionsReport) { /* ... */
+                            if (report.areAllPermissionsGranted())
+                                startActivity(Intent(requireContext(), AnswersActivity::class.java))
+                        }
+
+                        override fun onPermissionRationaleShouldBeShown(permissions: List<PermissionRequest?>?, token: PermissionToken?) { /* ... */
+                        }
+                    }).check()
+            }
+        }
+
+
     }
 
     fun openActivity() {

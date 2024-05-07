@@ -3,7 +3,6 @@ package com.apps.arbaelbarca.omrscanner
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.opengl.Visibility
 import android.os.Bundle
 import android.os.Environment
 import android.util.Log
@@ -11,11 +10,13 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.apps.arbaelbarca.omrscanner.data.model.request.RequestPostLjk
-import com.apps.arbaelbarca.omrscanner.data.model.response.ResponseGetLjk
 import com.apps.arbaelbarca.omrscanner.data.network.ApiClient
 import com.apps.arbaelbarca.omrscanner.databinding.ActivityResultsBinding
 import com.google.gson.Gson
+import com.google.gson.JsonArray
 import com.google.gson.JsonObject
+import org.json.JSONArray
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -35,7 +36,8 @@ class Results : AppCompatActivity() {
     var answerTrue = "0"
     var scoreResult = "0"
 
-    val getListAnswer: MutableList<String> = mutableListOf()
+    val getListAnswer: MutableList<RequestPostLjk.Jawaban> = mutableListOf()
+    var jsonArray: JsonArray? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -73,6 +75,8 @@ class Results : AppCompatActivity() {
         val f = File(path, "key.txt")
         val key = readFile(f).split("\n".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
         val answers = readFile(MainActivity.file).split("\n".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+
+
         val maxscore = answers.size.toDouble()
         if (maxscore == 0.0 || key.size == 0) {
             Toast.makeText(applicationContext, "No Answer Key Found.\nPlease Set Up an Answer Key First", Toast.LENGTH_SHORT).show()
@@ -85,9 +89,20 @@ class Results : AppCompatActivity() {
                 var ind = key[i].indexOf('.')
                 val actual = key[i].substring(ind + 1).trim { it <= ' ' }
                 ind = answers[i].indexOf('.')
+
+                println("respon Key $ind")
+                getListAnswer.addAll(
+                    listOf(
+                        RequestPostLjk.Jawaban(answers[i])
+                    )
+                )
+
+                println("respon Gson answer ${Gson().toJson(getListAnswer)}")
+
                 val found = answers[i].substring(ind + 1).trim { it <= ' ' }
                 if (actual.equals(found, ignoreCase = true)) ++s
                 i++
+
             }
         } catch (e: Exception) {
             Toast.makeText(applicationContext, "No Answer Key Found.\nPlease Set Up an Answer Key First", Toast.LENGTH_SHORT).show()
@@ -131,7 +146,10 @@ class Results : AppCompatActivity() {
             && getNama.isNotEmpty()
         ) {
             sendApiSubmit()
-        } else Toast.makeText(this, "Form tidak boleh kosong", Toast.LENGTH_SHORT).show()
+        } else {
+            binding.pbSubmit.visibility = View.GONE
+            Toast.makeText(this, "Form tidak boleh kosong", Toast.LENGTH_SHORT).show()
+        }
     }
 
     fun getCurrentDatetime(): String {
@@ -141,10 +159,12 @@ class Results : AppCompatActivity() {
     }
 
     private fun sendApiSubmit() {
+
+        println("respon Gson submit ${Gson().toJson(getListAnswer)}")
+
         val getMatkul = binding.tvInputMataKuliah.text.toString()
         val getNik = binding.tvInputNik.text.toString()
         val getNama = binding.tvInputNama.text.toString()
-
 
         val requestPostLjk = RequestPostLjk(
             answerFalse,
@@ -157,12 +177,14 @@ class Results : AppCompatActivity() {
             getNama,
             scoreResult
         )
+
         val callApiSubmit = ApiClient().apiService.callPostLjk(requestPostLjk)
         callApiSubmit.enqueue(object : Callback<JsonObject> {
             override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
                 binding.pbSubmit.visibility = View.GONE
                 binding.btnCheck.visibility = View.VISIBLE
                 Toast.makeText(this@Results, "Success dikirim", Toast.LENGTH_SHORT).show()
+                finish()
             }
 
             override fun onFailure(call: Call<JsonObject>, t: Throwable) {
@@ -178,16 +200,11 @@ class Results : AppCompatActivity() {
             val br = BufferedReader(FileReader(file))
             var line: String?
             while (br.readLine().also { line = it } != null) {
-                getListAnswer.addAll(
-                    listOf(
-                        "value_${readLine()} : $line"
-                    )
-                )
                 text.append(line)
                 text.append('\n')
             }
 
-            println("repson Gson answer ${Gson().toJson(getListAnswer)}")
+//            println("respon Gson Array ${Gson().toJson(jsonArray)}")
 
             br.close()
         } catch (e: IOException) {

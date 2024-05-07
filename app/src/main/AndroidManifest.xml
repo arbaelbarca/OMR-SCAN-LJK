@@ -22,18 +22,22 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:targetApi="q">
-        <!--        <activity-->
-        <!--            android:name=".BottomViewNavigationActivity"-->
-        <!--            android:exported="false"-->
-        <!--            android:label="@string/title_activity_bottom_view_navigation" />-->
         <activity
-            android:name=".BottomViewHomeActivity"
+            android:name=".Results"
             android:exported="false" />
+        <!-- <activity -->
+        <!-- android:name=".BottomViewNavigationActivity" -->
+        <!-- android:exported="false" -->
+        <!-- android:label="@string/title_activity_bottom_view_navigation" /> -->
+<!--        <activity-->
+<!--            android:name=".BottomViewHomeActivity"-->
+<!--            android:exported="false" />-->
         <activity
             android:name=".AnswersActivity"
-            android:label="@string/project_name" />
+            android:label="@string/project_name"
+            android:exported="false" />
         <activity
-            android:name=".BottomViewNavigationActivity"
+            android:name=".ui.activity.FrameLayoutActivity"
             android:exported="true"
             android:label="@string/project_name">
             <intent-filter>
@@ -42,7 +46,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Results" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
