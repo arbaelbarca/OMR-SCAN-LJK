@@ -49,7 +49,7 @@ class Results : AppCompatActivity() {
         binding.apply {
             getListAnswer.clear()
 
-            answers.text = readFile(MainActivity.file)
+            answers.text = readFile(MainActivity.file!!)
             answers.visibility = View.VISIBLE
             score.visibility = View.GONE
             btnCheck.setOnClickListener {
@@ -74,7 +74,7 @@ class Results : AppCompatActivity() {
         )
         val f = File(path, "key.txt")
         val key = readFile(f).split("\n".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
-        val answers = readFile(MainActivity.file).split("\n".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+        val answers = readFile(MainActivity.file!!).split("\n".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
 
 
         val maxscore = answers.size.toDouble()
@@ -90,14 +90,12 @@ class Results : AppCompatActivity() {
                 val actual = key[i].substring(ind + 1).trim { it <= ' ' }
                 ind = answers[i].indexOf('.')
 
-                println("respon Key $ind")
                 getListAnswer.addAll(
                     listOf(
                         RequestPostLjk.Jawaban(answers[i])
                     )
                 )
 
-                println("respon Gson answer ${Gson().toJson(getListAnswer)}")
 
                 val found = answers[i].substring(ind + 1).trim { it <= ' ' }
                 if (actual.equals(found, ignoreCase = true)) ++s
@@ -124,8 +122,6 @@ class Results : AppCompatActivity() {
             val getAnswerFalse = maxscore - s
             answerFalse = getAnswerFalse.toString()
             answerTrue = s.toString()
-
-            println("respon ANswerfalse $getAnswerFalse and true $s")
 
             tvItemTotalAnswerTrue.text = answerTrue
             tvItemTotalAnswerFalse.text = answerFalse
